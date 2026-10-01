@@ -1,459 +1,66 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!doctype html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickCalc - حاسبات مجانية</title>
-<meta name="description" content="QuickCalc حاسبات مجانية وسريعة للمال والرياضيات والتواريخ والتحويلات.">
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="QuickCalc - free online calculators for everyday math, money, dates and conversions.">
+<title>QuickCalc — Free Online Calculators</title>
 <style>
-*{box-sizing:border-box}
-
-body{
-    margin:0;
-    font-family:Arial,Tahoma,sans-serif;
-    background:#f7f8fa;
-    color:#172033;
-    line-height:1.7;
-}
-
-header{
-    background:#172033;
-    color:white;
-    padding:22px 16px;
-}
-
-.container{
-    width:min(1100px,94%);
-    margin:auto;
-}
-
-.logo{
-    color:white;
-    text-decoration:none;
-    font-size:25px;
-    font-weight:bold;
-}
-
-nav{
-    margin-top:10px;
-}
-
-nav a{
-    color:#dbe4ff;
-    text-decoration:none;
-    margin-left:15px;
-}
-
-.hero{
-    text-align:center;
-    padding:45px 10px 30px;
-}
-
-.badge{
-    display:inline-block;
-    background:#e8efff;
-    color:#315bdc;
-    padding:5px 12px;
-    border-radius:20px;
-    font-size:14px;
-}
-
-.hero h1{
-    font-size:42px;
-    margin:15px 0 8px;
-}
-
-.hero p{
-    color:#5f6b7a;
-    font-size:18px;
-}
-
-.grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:16px;
-    margin:25px 0 45px;
-}
-
-.card{
-    background:white;
-    border:1px solid #e1e5eb;
-    border-radius:14px;
-    padding:20px;
-    text-decoration:none;
-    color:#172033;
-    transition:.2s;
-    box-shadow:0 3px 12px rgba(0,0,0,.04);
-}
-
-.card:hover{
-    transform:translateY(-3px);
-    border-color:#315bdc;
-}
-
-.icon{
-    font-size:28px;
-}
-
-.card h2{
-    font-size:19px;
-    margin:8px 0;
-}
-
-.card p{
-    color:#687386;
-    margin:0;
-}
-
-footer{
-    background:#172033;
-    color:#dbe4ff;
-    padding:25px 10px;
-    text-align:center;
-}
-
-footer a{
-    color:#dbe4ff;
-    margin:0 8px;
-}
-
-@media(max-width:600px){
-    .hero h1{font-size:32px}
-    .hero p{font-size:16px}
-}
+:root{--bg:#f6f8fb;--card:#fff;--text:#172033;--muted:#657087;--p:#5b3df5;--b:#e5e9f2}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.55}a{color:inherit}.wrap{width:min(1120px,calc(100% - 24px));margin:auto}header{background:#fff;border-bottom:1px solid var(--b);position:sticky;top:0;z-index:5}nav{min-height:66px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:24px;font-weight:800;text-decoration:none;color:var(--p)}.links{display:flex;gap:18px;font-size:14px}.links a{text-decoration:none;color:var(--muted)}.hero{text-align:center;padding:58px 0 30px}.badge{display:inline-block;background:#eeeaff;color:var(--p);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700}h1{font-size:clamp(40px,7vw,64px);line-height:1.05;margin:16px 0 12px;letter-spacing:-2px}.hero p{max-width:680px;margin:auto;color:var(--muted);font-size:18px}.search{max-width:650px;margin:25px auto}.search input{width:100%;padding:15px 17px;border:1px solid var(--b);border-radius:13px;font:inherit;outline:0}.search input:focus{border-color:var(--p)}section{padding:20px 0 55px}.head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}h2{margin:0;font-size:28px}.count{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:var(--card);border:1px solid var(--b);border-radius:16px;padding:18px;text-decoration:none;transition:.15s}.card:hover{transform:translateY(-2px);border-color:#d5ceff;box-shadow:0 10px 28px #1f293712}.icon{font-size:27px}.card h3{margin:9px 0 3px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:13px}.panel{background:#fff;border:1px solid var(--b);border-radius:16px;padding:20px;margin-top:20px;box-shadow:0 8px 24px #1f29370a}.panel h2{font-size:21px;margin-bottom:14px}.fg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}label{display:block;font-weight:700;font-size:14px;margin-bottom:5px}input,select{width:100%;padding:11px;border:1px solid var(--b);border-radius:9px;font:inherit;margin-bottom:10px;background:#fff}button{border:0;border-radius:9px;padding:11px 17px;background:var(--p);color:#fff;font-weight:700;cursor:pointer}.result{margin-top:13px;padding:12px;border-radius:9px;background:#f0edff;font-weight:700;min-height:45px}footer{background:#111827;color:#cbd5e1;padding:32px 0}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.foot a{color:#fff;text-decoration:none}.hidden{display:none!important}@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.links{display:none}.grid,.fg{grid-template-columns:1fr}h1{font-size:43px}}
 </style>
 </head>
-
 <body>
-
-<header>
-<div class="container">
-<a class="logo" href="/">QuickCalc</a>
-
-<nav>
-<a href="/">الرئيسية</a>
-<a href="#calculators">الحاسبات</a>
-<a href="about.html">حول</a>
-<a href="privacy.html">الخصوصية</a>
-</nav>
+<header><nav class="wrap"><a class="logo" href="./">QuickCalc</a><div class="links"><a href="#calculators">Calculators</a><a href="about.html">About</a><a href="privacy.html">Privacy</a></div></nav></header>
+<main>
+<div class="wrap hero"><span class="badge">100% Free • No registration</span><h1>Calculate it. Fast.</h1><p>Simple calculators for money, math, dates, conversions and everyday decisions.</p><div class="search"><input id="search" type="search" placeholder="Search calculators..."></div></div>
+<section id="calculators" class="wrap"><div class="head"><h2>All calculators</h2><span id="count" class="count"></span></div>
+<div class="grid" id="cards">
+<a class="card" data-name="percentage percent" href="#percentage"><div class="icon">%</div><h3>Percentage</h3><p>Find a percentage of a number.</p></a>
+<a class="card" data-name="average mean" href="#average"><div class="icon">∑</div><h3>Average</h3><p>Calculate the average.</p></a>
+<a class="card" data-name="fraction" href="#fraction"><div class="icon">½</div><h3>Fraction</h3><p>Calculate fractions.</p></a>
+<a class="card" data-name="simple interest" href="#simple"><div class="icon">%</div><h3>Simple Interest</h3><p>Calculate interest and total.</p></a>
+<a class="card" data-name="compound interest" href="#compound"><div class="icon">📈</div><h3>Compound Interest</h3><p>Calculate compound growth.</p></a>
+<a class="card" data-name="discount sale" href="#discount"><div class="icon">🏷️</div><h3>Discount</h3><p>Find sale price and savings.</p></a>
+<a class="card" data-name="loan payment" href="#loan"><div class="icon">💳</div><h3>Loan Payment</h3><p>Estimate monthly payments.</p></a>
+<a class="card" data-name="age" href="#age"><div class="icon">🎂</div><h3>Age</h3><p>Calculate age from birth date.</p></a>
+<a class="card" data-name="date difference days" href="#datediff"><div class="icon">📅</div><h3>Date Difference</h3><p>Count days between dates.</p></a>
+<a class="card" data-name="speed distance time" href="#speed"><div class="icon">⚡</div><h3>Speed</h3><p>Calculate speed.</p></a>
+<a class="card" data-name="temperature celsius fahrenheit" href="#temperature"><div class="icon">🌡️</div><h3>Temperature</h3><p>Convert Celsius and Fahrenheit.</p></a>
+<a class="card" data-name="length conversion" href="#length"><div class="icon">📏</div><h3>Length</h3><p>Convert common length units.</p></a>
+<a class="card" data-name="weight conversion" href="#weight"><div class="icon">⚖️</div><h3>Weight</h3><p>Convert kg, g, lb and oz.</p></a>
+<a class="card" data-name="bmi body mass index" href="#bmi"><div class="icon">⚕️</div><h3>BMI</h3><p>Calculate body mass index.</p></a>
 </div>
-</header>
-
-<main class="container">
-
-<section class="hero">
-<span class="badge">مجاني • لا حاجة للتسجيل</span>
-
-<h1>احسبها. بسرعة.</h1>
-
-<p>
-أدوات حسابية بسيطة وسريعة للمال والرياضيات والتواريخ والتحويلات اليومية.
-</p>
-</section>
-
-<section id="calculators">
-
-<h2>جميع الآلات الحاسبة</h2>
-
-<div class="grid">
-
-<a class="card" href="#percentage">
-<div class="icon">📊</div>
-<h2>حاسبة النسبة المئوية</h2>
-<p>احسب النسب والزيادات والخصومات بسهولة.</p>
-</a>
-
-<a class="card" href="#average">
-<div class="icon">📈</div>
-<h2>حاسبة المتوسط</h2>
-<p>احسب المتوسط الحسابي لمجموعة أرقام.</p>
-</a>
-
-<a class="card" href="#fraction">
-<div class="icon">½</div>
-<h2>حاسبة الكسور</h2>
-<p>احسب العمليات الأساسية على الكسور.</p>
-</a>
-
-<a class="card" href="#interest">
-<div class="icon">💰</div>
-<h2>الفائدة البسيطة</h2>
-<p>احسب الفائدة والمبلغ النهائي.</p>
-</a>
-
-<a class="card" href="#compound">
-<div class="icon">📈</div>
-<h2>الفائدة المركبة</h2>
-<p>احسب نمو المال مع الفائدة المركبة.</p>
-</a>
-
-<a class="card" href="#loan">
-<div class="icon">🏦</div>
-<h2>قسط القرض</h2>
-<p>احسب القسط الشهري التقريبي.</p>
-</a>
-
-<a class="card" href="#age">
-<div class="icon">🎂</div>
-<h2>حاسبة العمر</h2>
-<p>احسب عمرك بالسنوات والأشهر والأيام.</p>
-</a>
-
-<a class="card" href="#date">
-<div class="icon">📅</div>
-<h2>الفرق بين التاريخين</h2>
-<p>احسب المدة بين تاريخين.</p>
-</a>
-
-<a class="card" href="#speed">
-<div class="icon">⚡</div>
-<h2>حاسبة السرعة</h2>
-<p>احسب السرعة والمسافة والزمن.</p>
-</a>
-
-<a class="card" href="#temperature">
-<div class="icon">🌡️</div>
-<h2>تحويل الحرارة</h2>
-<p>حوّل بين Celsius و Fahrenheit.</p>
-</a>
-
-<a class="card" href="#length">
-<div class="icon">📏</div>
-<h2>تحويل الطول</h2>
-<p>حوّل بين المتر والكيلومتر والقدم وغيرها.</p>
-</a>
-
-<a class="card" href="#weight">
-<div class="icon">⚖️</div>
-<h2>تحويل الوزن</h2>
-<p>حوّل بين الكيلوغرام والغرام والرطل.</p>
-</a>
-
-</div>
-</section>
-
-<section id="percentage" class="calculator">
-<h2>حاسبة النسبة المئوية</h2>
-
-<label>الرقم</label>
-<input id="pNumber" type="number" placeholder="مثال: 200">
-
-<label>النسبة %</label>
-<input id="pPercent" type="number" placeholder="مثال: 15">
-
-<button onclick="percentage()">احسب</button>
-
-<div class="result" id="pResult"></div>
-</section>
-
-<section id="average" class="calculator">
-<h2>حاسبة المتوسط</h2>
-
-<label>الأرقام</label>
-<input id="avgNumbers" type="text" placeholder="10,20,30,40">
-
-<button onclick="average()">احسب</button>
-
-<div class="result" id="avgResult"></div>
-</section>
-
-<section id="interest" class="calculator">
-<h2>الفائدة البسيطة</h2>
-
-<label>رأس المال</label>
-<input id="principal" type="number">
-
-<label>الفائدة السنوية %</label>
-<input id="rate" type="number">
-
-<label>عدد السنوات</label>
-<input id="years" type="number">
-
-<button onclick="interest()">احسب</button>
-
-<div class="result" id="interestResult"></div>
-</section>
-
-<section id="temperature" class="calculator">
-<h2>تحويل الحرارة</h2>
-
-<label>درجة Celsius</label>
-<input id="celsius" type="number">
-
-<button onclick="temperature()">تحويل إلى Fahrenheit</button>
-
-<div class="result" id="tempResult"></div>
-</section>
-
-<section id="length" class="calculator">
-<h2>تحويل الطول</h2>
-
-<label>المتر</label>
-<input id="meter" type="number">
-
-<button onclick="lengthConvert()">تحويل</button>
-
-<div class="result" id="lengthResult"></div>
-</section>
-
-<section id="weight" class="calculator">
-<h2>تحويل الوزن</h2>
-
-<label>الكيلوغرام</label>
-<input id="kg" type="number">
-
-<button onclick="weightConvert()">تحويل</button>
-
-<div class="result" id="weightResult"></div>
-</section>
-
-</main>
-
-<style>
-.calculator{
-    background:white;
-    padding:22px;
-    margin:20px 0;
-    border-radius:14px;
-    border:1px solid #e1e5eb;
-}
-
-.calculator h2{
-    margin-top:0;
-}
-
-.calculator label{
-    display:block;
-    margin-top:12px;
-}
-
-.calculator input{
-    width:100%;
-    padding:12px;
-    margin-top:5px;
-    border:1px solid #ccd2dc;
-    border-radius:8px;
-    font-size:16px;
-}
-
-.calculator button{
-    margin-top:15px;
-    padding:12px 20px;
-    background:#315bdc;
-    color:white;
-    border:0;
-    border-radius:8px;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.result{
-    margin-top:15px;
-    padding:12px;
-    background:#eef3ff;
-    border-radius:8px;
-    font-weight:bold;
-}
-</style>
-
+<div class="panel" id="percentage"><h2>Percentage Calculator</h2><div class="fg"><div><label>Percentage</label><input id="pp" type="number" value="20"></div><div><label>Number</label><input id="pn" type="number" value="100"></div></div><button onclick="percentage()">Calculate</button><div id="pr" class="result">Result: —</div></div>
+<div class="panel" id="average"><h2>Average Calculator</h2><label>Numbers (comma separated)</label><input id="av" value="10,20,30,40"><button onclick="average()">Calculate</button><div id="ar" class="result">Result: —</div></div>
+<div class="panel" id="fraction"><h2>Fraction Calculator</h2><div class="fg"><div><label>First numerator</label><input id="a" type="number" value="1"><label>First denominator</label><input id="b" type="number" value="2"></div><div><label>Second numerator</label><input id="c" type="number" value="1"><label>Second denominator</label><input id="d" type="number" value="3"></div></div><label>Operation</label><select id="op"><option>+</option><option>-</option><option>×</option><option>÷</option></select><button onclick="fraction()">Calculate</button><div id="fr" class="result">Result: —</div></div>
+<div class="panel" id="simple"><h2>Simple Interest</h2><div class="fg"><div><label>Principal</label><input id="sp" type="number" value="1000"></div><div><label>Annual rate (%)</label><input id="sr" type="number" value="5"></div><div><label>Years</label><input id="st" type="number" value="2"></div></div><button onclick="simple()">Calculate</button><div id="sir" class="result">Result: —</div></div>
+<div class="panel" id="compound"><h2>Compound Interest</h2><div class="fg"><div><label>Principal</label><input id="cp" type="number" value="1000"></div><div><label>Annual rate (%)</label><input id="cr" type="number" value="5"></div><div><label>Years</label><input id="ct" type="number" value="5"></div><div><label>Compounds/year</label><input id="cn" type="number" value="12"></div></div><button onclick="compound()">Calculate</button><div id="cir" class="result">Result: —</div></div>
+<div class="panel" id="discount"><h2>Discount Calculator</h2><div class="fg"><div><label>Original price</label><input id="dp" type="number" value="100"></div><div><label>Discount (%)</label><input id="dr" type="number" value="20"></div></div><button onclick="discount()">Calculate</button><div id="dcr" class="result">Result: —</div></div>
+<div class="panel" id="loan"><h2>Loan Payment</h2><div class="fg"><div><label>Loan amount</label><input id="lp" type="number" value="10000"></div><div><label>Annual interest (%)</label><input id="lr" type="number" value="6"></div><div><label>Term (years)</label><input id="ly" type="number" value="5"></div></div><button onclick="loan()">Calculate</button><div id="lrout" class="result">Result: —</div></div>
+<div class="panel" id="age"><h2>Age Calculator</h2><label>Date of birth</label><input id="dob" type="date"><button onclick="age()">Calculate</button><div id="ager" class="result">Result: —</div></div>
+<div class="panel" id="datediff"><h2>Date Difference</h2><div class="fg"><div><label>Start</label><input id="dt1" type="date"></div><div><label>End</label><input id="dt2" type="date"></div></div><button onclick="datediff()">Calculate</button><div id="dtr" class="result">Result: —</div></div>
+<div class="panel" id="speed"><h2>Speed Calculator</h2><div class="fg"><div><label>Distance (km)</label><input id="sd" type="number" value="100"></div><div><label>Time (hours)</label><input id="stt" type="number" value="2"></div></div><button onclick="speed()">Calculate</button><div id="spr" class="result">Result: —</div></div>
+<div class="panel" id="temperature"><h2>Temperature Converter</h2><div class="fg"><div><label>Value</label><input id="tv" type="number" value="25"></div><div><label>From</label><select id="tf"><option value="C">Celsius</option><option value="F">Fahrenheit</option></select></div></div><button onclick="temperature()">Convert</button><div id="tr" class="result">Result: —</div></div>
+<div class="panel" id="length"><h2>Length Converter</h2><div class="fg"><div><label>Value</label><input id="lv" type="number" value="1"></div><div><label>From</label><select id="lf"><option value="m">Meter</option><option value="km">Kilometer</option><option value="cm">Centimeter</option><option value="mi">Mile</option><option value="ft">Foot</option></select></div><div><label>To</label><select id="lt"><option value="m">Meter</option><option value="km">Kilometer</option><option value="cm">Centimeter</option><option value="mi">Mile</option><option value="ft">Foot</option></select></div></div><button onclick="lengthc()">Convert</button><div id="lres" class="result">Result: —</div></div>
+<div class="panel" id="weight"><h2>Weight Converter</h2><div class="fg"><div><label>Value</label><input id="wv" type="number" value="1"></div><div><label>From</label><select id="wf"><option value="kg">Kilogram</option><option value="g">Gram</option><option value="lb">Pound</option><option value="oz">Ounce</option></select></div><div><label>To</label><select id="wt"><option value="kg">Kilogram</option><option value="g">Gram</option><option value="lb">Pound</option><option value="oz">Ounce</option></select></div></div><button onclick="weight()">Convert</button><div id="wr" class="result">Result: —</div></div>
+<div class="panel" id="bmi"><h2>BMI Calculator</h2><div class="fg"><div><label>Weight (kg)</label><input id="bw" type="number" value="70"></div><div><label>Height (cm)</label><input id="bh" type="number" value="175"></div></div><button onclick="bmi()">Calculate</button><div id="br" class="result">Result: —</div></div>
+</section></main>
+<footer><div class="wrap foot"><div><strong>QuickCalc</strong><br>Free online calculators.</div><div><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="disclaimer.html">Disclaimer</a></div></div></footer>
 <script>
-function percentage(){
-    const n=Number(document.getElementById("pNumber").value);
-    const p=Number(document.getElementById("pPercent").value);
-
-    if(!Number.isFinite(n)||!Number.isFinite(p)){
-        document.getElementById("pResult").textContent="أدخل أرقاماً صحيحة.";
-        return;
-    }
-
-    document.getElementById("pResult").textContent=
-        "النتيجة: "+(n*p/100).toLocaleString();
-}
-
-function average(){
-    const text=document.getElementById("avgNumbers").value;
-
-    const nums=text.split(",")
-        .map(x=>Number(x.trim()))
-        .filter(x=>Number.isFinite(x));
-
-    if(nums.length===0){
-        document.getElementById("avgResult").textContent="أدخل أرقاماً مفصولة بفواصل.";
-        return;
-    }
-
-    const result=nums.reduce((a,b)=>a+b,0)/nums.length;
-
-    document.getElementById("avgResult").textContent=
-        "المتوسط: "+result.toLocaleString();
-}
-
-function interest(){
-    const p=Number(document.getElementById("principal").value);
-    const r=Number(document.getElementById("rate").value);
-    const y=Number(document.getElementById("years").value);
-
-    if(!Number.isFinite(p)||!Number.isFinite(r)||!Number.isFinite(y)){
-        document.getElementById("interestResult").textContent="أكمل جميع الخانات.";
-        return;
-    }
-
-    const interest=p*r*y/100;
-    const total=p+interest;
-
-    document.getElementById("interestResult").textContent=
-        "الفائدة: "+interest.toLocaleString()+" — المبلغ النهائي: "+total.toLocaleString();
-}
-
-function temperature(){
-    const c=Number(document.getElementById("celsius").value);
-
-    if(!Number.isFinite(c)){
-        document.getElementById("tempResult").textContent="أدخل درجة الحرارة.";
-        return;
-    }
-
-    const f=(c*9/5)+32;
-
-    document.getElementById("tempResult").textContent=
-        c+"°C = "+f.toFixed(2)+"°F";
-}
-
-function lengthConvert(){
-    const m=Number(document.getElementById("meter").value);
-
-    if(!Number.isFinite(m)){
-        document.getElementById("lengthResult").textContent="أدخل قيمة.";
-        return;
-    }
-
-    document.getElementById("lengthResult").textContent=
-        m+" متر = "+(m/1000).toLocaleString()+" كم";
-}
-
-function weightConvert(){
-    const kg=Number(document.getElementById("kg").value);
-
-    if(!Number.isFinite(kg)){
-        document.getElementById("weightResult").textContent="أدخل قيمة.";
-        return;
-    }
-
-    document.getElementById("weightResult").textContent=
-        kg+" كغ = "+(kg*1000).toLocaleString()+" غرام";
-}
-</script>
-
-<footer>
-<div class="container">
-QuickCalc · حاسبات مجانية عبر الإنترنت
-<br><br>
-<a href="about.html">حول</a>
-<a href="privacy.html">الخصوصية</a>
-<a href="disclaimer.html">إخلاء المسؤولية</a>
-</div>
-</footer>
-
-</body>
-</html>
+const $=id=>document.getElementById(id),v=id=>Number($(id).value),out=(id,s)=>$(id).textContent=s,fmt=x=>Number.isFinite(x)?Number(x.toFixed(8)).toLocaleString():'Invalid input';
+function percentage(){out('pr','Result: '+fmt(v('pp')*v('pn')/100))}
+function average(){let a=$('av').value.split(',').map(Number).filter(Number.isFinite);out('ar',a.length?'Average: '+fmt(a.reduce((x,y)=>x+y,0)/a.length):'Enter valid numbers')}
+function gcd(a,b){a=Math.abs(a);b=Math.abs(b);while(b)[a,b]=[b,a%b];return a||1}
+function fraction(){let a=v('a'),b=v('b'),c=v('c'),d=v('d'),o=$('op').value;if(!b||!d){out('fr','Denominators cannot be zero');return}let x,y;if(o==='+'){x=a*d+c*b;y=b*d}else if(o==='-'){x=a*d-c*b;y=b*d}else if(o==='×'){x=a*c;y=b*d}else{x=a*d;y=b*c}if(y<0){x=-x;y=-y}let g=gcd(x,y);out('fr','Result: '+x/g+'/'+y/g+' ('+fmt(x/y)+')')}
+function simple(){let i=v('sp')*v('sr')/100*v('st');out('sir','Interest: '+fmt(i)+' • Total: '+fmt(v('sp')+i))}
+function compound(){let p=v('cp'),r=v('cr')/100,t=v('ct'),n=v('cn');if(n<=0){out('cir','Compounds/year must be greater than zero');return}let total=p*Math.pow(1+r/n,n*t);out('cir','Total: '+fmt(total)+' • Interest: '+fmt(total-p))}
+function discount(){let p=v('dp'),s=p*(1-v('dr')/100);out('dcr','Sale price: '+fmt(s)+' • You save: '+fmt(p-s))}
+function loan(){let p=v('lp'),r=v('lr')/100/12,m=v('ly')*12;if(p<=0||m<=0){out('lrout','Enter valid values');return}let pay=r?p*r*Math.pow(1+r,m)/(Math.pow(1+r,m)-1):p/m;out('lrout','Monthly payment: '+fmt(pay))}
+function age(){let d=new Date($('dob').value+'T00:00:00');if(isNaN(d)){out('ager','Choose a birth date');return}let n=new Date(),a=n.getFullYear()-d.getFullYear(),m=n.getMonth()-d.getMonth();if(m<0||(m===0&&n.getDate()<d.getDate()))a--;out('ager','Age: '+a+' years')}
+function datediff(){let a=new Date($('dt1').value+'T00:00:00'),b=new Date($('dt2').value+'T00:00:00');if(isNaN(a)||isNaN(b)){out('dtr','Choose both dates');return}out('dtr','Difference: '+Math.abs(Math.round((b-a)/86400000))+' days')}
+function speed(){let t=v('stt');out('spr',t>0?'Speed: '+fmt(v('sd')/t)+' km/h':'Time must be greater than zero')}
+function temperature(){let x=v('tv'),c=$('tf').value==='C',r=c?x*9/5+32:(x-32)*5/9;out('tr','Converted: '+fmt(r)+' °'+(c?'F':'C'))}
+const lm={m:1,km:1000,cm:.01,mi:1609.344,ft:.3048};function lengthc(){out('lres','Result: '+fmt(v('lv')*lm[$('lf').value]/lm[$('lt').value]))}
+const wm={kg:1,g:.001,lb:.45359237,oz:.028349523125};function weight(){out('wr','Result: '+fmt(v('wv')*wm[$('wf').value]/wm[$('wt').value]))}
+function bmi(){let h=v('bh')/100;out('br',h>0?'BMI: '+fmt(v('bw')/(h*h)):'Enter a valid height')}
+$('search').addEventListener('input',e=>{let q=e.target.value.toLowerCase().trim(),c=0;document.querySelectorAll('.card').forEach(x=>{let ok=!q||x.dataset.name.includes(q)||x.textContent.toLowerCase().includes(q);x.classList.toggle('hidden',!ok);if(ok)c++});$('count').textContent=c+' calculators'});$('count').textContent=document.querySelectorAll('.card').length+' calculators';let today=new Date().toISOString().slice(0,10);$('dt1').value=today;$('dt2').value=today;
+</script></body></html>
