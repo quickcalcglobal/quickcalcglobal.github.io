@@ -1,1 +1,844 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>QuickCalc — Free Online Calculators</title><meta name="description" content="Free online calculators for money, math, dates, conversions and everyday decisions."><link rel="canonical" href="./"><link rel="stylesheet" href="assets/style.css"></head><body><header class="nav"><div class="navin"><a class="logo" href="./">QuickCalc</a><span>Free · No signup</span></div></header><main class="wrap"><section class="hero"><div class="eyebrow">Simple tools for everyday calculations</div><h1>Calculate it. Quickly.</h1><p>Fast, clear calculators for money, math, dates, conversions and everyday decisions.</p></section><section class="content"><h2>All calculators</h2><div class="links"><a href="calculators/percentage.html">% Percentage</a><a href="calculators/average.html">x̄ Average</a><a href="calculators/ratio.html">∶ Ratio</a><a href="calculators/fraction.html">½ Fraction</a><a href="calculators/scientific.html">∑ Scientific Calculator</a><a href="calculators/compound.html">↗ Compound Interest</a><a href="calculators/simple.html">% Simple Interest</a><a href="calculators/loan.html">$ Loan Payment</a><a href="calculators/mortgage.html">⌂ Mortgage</a><a href="calculators/pay.html">$ Salary / Hourly Pay</a><a href="calculators/discount.html">🏷 Discount</a><a href="calculators/tip.html">🍽 Tip &amp; Bill Split</a><a href="calculators/age.html">🎂 Age</a><a href="calculators/datediff.html">📅 Date Difference</a><a href="calculators/until.html">⏳ Days Until Date</a><a href="calculators/duration.html">⏱ Time Duration</a><a href="calculators/length.html">↔ Length</a><a href="calculators/weight.html">⚖ Weight</a><a href="calculators/temperature.html">° Temperature</a><a href="calculators/speed.html">⚡ Speed</a></div></section></main><footer>QuickCalc · Free online calculators · <a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="disclaimer.html">Disclaimer</a></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="QuickCalc - Free online calculators for math, money, dates and conversions.">
+<title>QuickCalc - Free Online Calculators</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f5f7fa;
+    color:#172033;
+    line-height:1.6;
+}
+
+header{
+    background:#172033;
+    color:#fff;
+    padding:18px 16px;
+}
+
+.container{
+    width:min(1100px,94%);
+    margin:auto;
+}
+
+.nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+}
+
+.logo{
+    color:#fff;
+    text-decoration:none;
+    font-size:25px;
+    font-weight:bold;
+}
+
+.nav a{
+    color:#fff;
+    text-decoration:none;
+    margin-left:15px;
+}
+
+.hero{
+    text-align:center;
+    padding:45px 10px 30px;
+}
+
+.badge{
+    display:inline-block;
+    background:#e8f1ff;
+    color:#1769d1;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.hero h1{
+    font-size:42px;
+    margin:15px 0 8px;
+}
+
+.hero p{
+    color:#657087;
+    max-width:700px;
+    margin:auto;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin:25px 0;
+}
+
+.card{
+    background:#fff;
+    border:1px solid #e1e5eb;
+    border-radius:12px;
+    padding:20px;
+    text-decoration:none;
+    color:#172033;
+    transition:.2s;
+}
+
+.card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+}
+
+.card .icon{
+    font-size:28px;
+}
+
+.card h3{
+    margin:8px 0 5px;
+}
+
+.card p{
+    margin:0;
+    color:#657087;
+    font-size:14px;
+}
+
+.panel{
+    display:none;
+    background:#fff;
+    border:1px solid #e1e5eb;
+    border-radius:12px;
+    padding:22px;
+    margin:20px 0;
+}
+
+.panel.active{
+    display:block;
+}
+
+.panel h2{
+    margin-top:0;
+}
+
+.field{
+    margin:12px 0;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccd3dd;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    border:0;
+    background:#1769d1;
+    color:white;
+    padding:11px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#1256ac;
+}
+
+.result{
+    margin-top:15px;
+    padding:14px;
+    background:#eef6ff;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+footer{
+    background:#172033;
+    color:#fff;
+    margin-top:45px;
+    padding:25px 10px;
+    text-align:center;
+}
+
+footer a{
+    color:#fff;
+    margin:0 8px;
+}
+
+@media(max-width:600px){
+    .nav{
+        flex-direction:column;
+    }
+
+    .nav a{
+        margin:0 7px;
+        font-size:14px;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="container nav">
+<a class="logo" href="#">QuickCalc</a>
+
+<div>
+<a href="#calculators">Calculators</a>
+<a href="about.html">About</a>
+</div>
+</div>
+</header>
+
+<main class="container">
+
+<section class="hero">
+<span class="badge">100% Free · No Registration</span>
+<h1>Calculate it. Quickly.</h1>
+<p>
+Fast and simple calculators for money, mathematics, dates,
+conversions and everyday decisions.
+</p>
+</section>
+
+<section id="calculators">
+
+<div class="grid">
+
+<a class="card" href="#percentage" onclick="showPanel('percentage')">
+<div class="icon">%</div>
+<h3>Percentage</h3>
+<p>Calculate percentages quickly.</p>
+</a>
+
+<a class="card" href="#average" onclick="showPanel('average')">
+<div class="icon">📊</div>
+<h3>Average</h3>
+<p>Calculate the average of numbers.</p>
+</a>
+
+<a class="card" href="#simple" onclick="showPanel('simple')">
+<div class="icon">💰</div>
+<h3>Simple Interest</h3>
+<p>Calculate simple interest.</p>
+</a>
+
+<a class="card" href="#compound" onclick="showPanel('compound')">
+<div class="icon">📈</div>
+<h3>Compound Interest</h3>
+<p>Calculate compound growth.</p>
+</a>
+
+<a class="card" href="#loan" onclick="showPanel('loan')">
+<div class="icon">🏠</div>
+<h3>Loan Payment</h3>
+<p>Estimate monthly loan payments.</p>
+</a>
+
+<a class="card" href="#age" onclick="showPanel('age')">
+<div class="icon">🎂</div>
+<h3>Age Calculator</h3>
+<p>Calculate your exact age.</p>
+</a>
+
+<a class="card" href="#date" onclick="showPanel('date')">
+<div class="icon">📅</div>
+<h3>Date Difference</h3>
+<p>Calculate days between dates.</p>
+</a>
+
+<a class="card" href="#speed" onclick="showPanel('speed')">
+<div class="icon">⚡</div>
+<h3>Speed</h3>
+<p>Calculate speed from distance and time.</p>
+</a>
+
+<a class="card" href="#temperature" onclick="showPanel('temperature')">
+<div class="icon">🌡️</div>
+<h3>Temperature</h3>
+<p>Convert Celsius and Fahrenheit.</p>
+</a>
+
+<a class="card" href="#length" onclick="showPanel('length')">
+<div class="icon">📏</div>
+<h3>Length Converter</h3>
+<p>Convert common length units.</p>
+</a>
+
+<a class="card" href="#weight" onclick="showPanel('weight')">
+<div class="icon">⚖️</div>
+<h3>Weight Converter</h3>
+<p>Convert kilograms and pounds.</p>
+</a>
+
+<a class="card" href="#bmi" onclick="showPanel('bmi')">
+<div class="icon">⚕️</div>
+<h3>BMI Calculator</h3>
+<p>Calculate body mass index.</p>
+</a>
+
+</div>
+</section>
+
+<!-- Percentage -->
+<section class="panel" id="percentage">
+<h2>Percentage Calculator</h2>
+
+<div class="field">
+<label>Percentage (%)</label>
+<input id="percentValue" type="number" placeholder="Example: 20">
+</div>
+
+<div class="field">
+<label>Number</label>
+<input id="percentNumber" type="number" placeholder="Example: 500">
+</div>
+
+<button onclick="percentageCalc()">Calculate</button>
+<div class="result" id="percentageResult"></div>
+</section>
+
+<!-- Average -->
+<section class="panel" id="average">
+<h2>Average Calculator</h2>
+
+<div class="field">
+<label>Numbers separated by commas</label>
+<input id="averageNumbers" placeholder="10,20,30,40">
+</div>
+
+<button onclick="averageCalc()">Calculate</button>
+<div class="result" id="averageResult"></div>
+</section>
+
+<!-- Simple Interest -->
+<section class="panel" id="simple">
+<h2>Simple Interest Calculator</h2>
+
+<div class="field">
+<label>Principal</label>
+<input id="simplePrincipal" type="number">
+</div>
+
+<div class="field">
+<label>Annual Rate (%)</label>
+<input id="simpleRate" type="number">
+</div>
+
+<div class="field">
+<label>Time (years)</label>
+<input id="simpleTime" type="number">
+</div>
+
+<button onclick="simpleCalc()">Calculate</button>
+<div class="result" id="simpleResult"></div>
+</section>
+
+<!-- Compound Interest -->
+<section class="panel" id="compound">
+<h2>Compound Interest Calculator</h2>
+
+<div class="field">
+<label>Principal</label>
+<input id="compoundPrincipal" type="number">
+</div>
+
+<div class="field">
+<label>Annual Rate (%)</label>
+<input id="compoundRate" type="number">
+</div>
+
+<div class="field">
+<label>Years</label>
+<input id="compoundYears" type="number">
+</div>
+
+<div class="field">
+<label>Compounds per year</label>
+<input id="compoundFrequency" type="number" value="12">
+</div>
+
+<button onclick="compoundCalc()">Calculate</button>
+<div class="result" id="compoundResult"></div>
+</section>
+
+<!-- Loan -->
+<section class="panel" id="loan">
+<h2>Loan Payment Calculator</h2>
+
+<div class="field">
+<label>Loan Amount</label>
+<input id="loanAmount" type="number">
+</div>
+
+<div class="field">
+<label>Annual Interest Rate (%)</label>
+<input id="loanRate" type="number">
+</div>
+
+<div class="field">
+<label>Term (years)</label>
+<input id="loanYears" type="number">
+</div>
+
+<button onclick="loanCalc()">Calculate</button>
+<div class="result" id="loanResult"></div>
+</section>
+
+<!-- Age -->
+<section class="panel" id="age">
+<h2>Age Calculator</h2>
+
+<div class="field">
+<label>Date of Birth</label>
+<input id="birthDate" type="date">
+</div>
+
+<button onclick="ageCalc()">Calculate</button>
+<div class="result" id="ageResult"></div>
+</section>
+
+<!-- Date -->
+<section class="panel" id="date">
+<h2>Date Difference Calculator</h2>
+
+<div class="field">
+<label>Start Date</label>
+<input id="dateStart" type="date">
+</div>
+
+<div class="field">
+<label>End Date</label>
+<input id="dateEnd" type="date">
+</div>
+
+<button onclick="dateCalc()">Calculate</button>
+<div class="result" id="dateResult"></div>
+</section>
+
+<!-- Speed -->
+<section class="panel" id="speed">
+<h2>Speed Calculator</h2>
+
+<div class="field">
+<label>Distance (km)</label>
+<input id="speedDistance" type="number">
+</div>
+
+<div class="field">
+<label>Time (hours)</label>
+<input id="speedTime" type="number">
+</div>
+
+<button onclick="speedCalc()">Calculate</button>
+<div class="result" id="speedResult"></div>
+</section>
+
+<!-- Temperature -->
+<section class="panel" id="temperature">
+<h2>Temperature Converter</h2>
+
+<div class="field">
+<label>Value</label>
+<input id="tempValue" type="number">
+</div>
+
+<div class="field">
+<label>Convert</label>
+<select id="tempType">
+<option value="c2f">Celsius → Fahrenheit</option>
+<option value="f2c">Fahrenheit → Celsius</option>
+</select>
+</div>
+
+<button onclick="tempCalc()">Convert</button>
+<div class="result" id="tempResult"></div>
+</section>
+
+<!-- Length -->
+<section class="panel" id="length">
+<h2>Length Converter</h2>
+
+<div class="field">
+<label>Value</label>
+<input id="lengthValue" type="number">
+</div>
+
+<div class="field">
+<label>From</label>
+<select id="lengthFrom">
+<option value="m">Meters</option>
+<option value="km">Kilometers</option>
+<option value="cm">Centimeters</option>
+<option value="mi">Miles</option>
+<option value="ft">Feet</option>
+</select>
+</div>
+
+<div class="field">
+<label>To</label>
+<select id="lengthTo">
+<option value="m">Meters</option>
+<option value="km">Kilometers</option>
+<option value="cm">Centimeters</option>
+<option value="mi">Miles</option>
+<option value="ft">Feet</option>
+</select>
+</div>
+
+<button onclick="lengthCalc()">Convert</button>
+<div class="result" id="lengthResult"></div>
+</section>
+
+<!-- Weight -->
+<section class="panel" id="weight">
+<h2>Weight Converter</h2>
+
+<div class="field">
+<label>Value</label>
+<input id="weightValue" type="number">
+</div>
+
+<div class="field">
+<label>From</label>
+<select id="weightFrom">
+<option value="kg">Kilograms</option>
+<option value="lb">Pounds</option>
+<option value="g">Grams</option>
+</select>
+</div>
+
+<div class="field">
+<label>To</label>
+<select id="weightTo">
+<option value="kg">Kilograms</option>
+<option value="lb">Pounds</option>
+<option value="g">Grams</option>
+</select>
+</div>
+
+<button onclick="weightCalc()">Convert</button>
+<div class="result" id="weightResult"></div>
+</section>
+
+<!-- BMI -->
+<section class="panel" id="bmi">
+<h2>BMI Calculator</h2>
+
+<div class="field">
+<label>Weight (kg)</label>
+<input id="bmiWeight" type="number">
+</div>
+
+<div class="field">
+<label>Height (cm)</label>
+<input id="bmiHeight" type="number">
+</div>
+
+<button onclick="bmiCalc()">Calculate</button>
+<div class="result" id="bmiResult"></div>
+</section>
+
+</main>
+
+<footer>
+<div class="container">
+QuickCalc · Free Online Calculators
+<br><br>
+<a href="about.html">About</a>
+<a href="privacy.html">Privacy</a>
+<a href="disclaimer.html">Disclaimer</a>
+</div>
+</footer>
+
+<script>
+function showPanel(id){
+    document.querySelectorAll(".panel").forEach(function(panel){
+        panel.classList.remove("active");
+    });
+
+    var panel=document.getElementById(id);
+
+    if(panel){
+        panel.classList.add("active");
+        setTimeout(function(){
+            panel.scrollIntoView({behavior:"smooth",block:"start"});
+        },50);
+    }
+}
+
+function num(id){
+    return parseFloat(document.getElementById(id).value);
+}
+
+function percentageCalc(){
+    var p=num("percentValue");
+    var n=num("percentNumber");
+
+    if(isNaN(p)||isNaN(n)){
+        document.getElementById("percentageResult").textContent="Please enter both values.";
+        return;
+    }
+
+    document.getElementById("percentageResult").textContent=
+        p+"% of "+n+" = "+((p/100)*n).toFixed(2);
+}
+
+function averageCalc(){
+    var text=document.getElementById("averageNumbers").value;
+
+    var numbers=text.split(",")
+        .map(function(x){return parseFloat(x.trim());})
+        .filter(function(x){return !isNaN(x);});
+
+    if(numbers.length===0){
+        document.getElementById("averageResult").textContent="Please enter numbers.";
+        return;
+    }
+
+    var total=numbers.reduce(function(a,b){return a+b;},0);
+    var average=total/numbers.length;
+
+    document.getElementById("averageResult").textContent=
+        "Average = "+average.toFixed(2);
+}
+
+function simpleCalc(){
+    var p=num("simplePrincipal");
+    var r=num("simpleRate");
+    var t=num("simpleTime");
+
+    if(isNaN(p)||isNaN(r)||isNaN(t)){
+        document.getElementById("simpleResult").textContent="Please fill all fields.";
+        return;
+    }
+
+    var interest=p*(r/100)*t;
+    var total=p+interest;
+
+    document.getElementById("simpleResult").textContent=
+        "Interest = "+interest.toFixed(2)+" | Total = "+total.toFixed(2);
+}
+
+function compoundCalc(){
+    var p=num("compoundPrincipal");
+    var r=num("compoundRate");
+    var t=num("compoundYears");
+    var n=num("compoundFrequency");
+
+    if(isNaN(p)||isNaN(r)||isNaN(t)||isNaN(n)||n<=0){
+        document.getElementById("compoundResult").textContent="Please fill all fields correctly.";
+        return;
+    }
+
+    var total=p*Math.pow(1+(r/100)/n,n*t);
+    var interest=total-p;
+
+    document.getElementById("compoundResult").textContent=
+        "Interest = "+interest.toFixed(2)+" | Final Amount = "+total.toFixed(2);
+}
+
+function loanCalc(){
+    var p=num("loanAmount");
+    var annual=num("loanRate");
+    var years=num("loanYears");
+
+    if(isNaN(p)||isNaN(annual)||isNaN(years)||years<=0){
+        document.getElementById("loanResult").textContent="Please fill all fields correctly.";
+        return;
+    }
+
+    var months=years*12;
+    var monthlyRate=annual/100/12;
+
+    var payment;
+
+    if(monthlyRate===0){
+        payment=p/months;
+    }else{
+        payment=p*monthlyRate*Math.pow(1+monthlyRate,months)/
+        (Math.pow(1+monthlyRate,months)-1);
+    }
+
+    document.getElementById("loanResult").textContent=
+        "Monthly Payment = "+payment.toFixed(2);
+}
+
+function ageCalc(){
+    var value=document.getElementById("birthDate").value;
+
+    if(!value){
+        document.getElementById("ageResult").textContent="Please select your birth date.";
+        return;
+    }
+
+    var birth=new Date(value+"T00:00:00");
+    var today=new Date();
+
+    var age=today.getFullYear()-birth.getFullYear();
+
+    var birthday=new Date(
+        today.getFullYear(),
+        birth.getMonth(),
+        birth.getDate()
+    );
+
+    if(today<birthday){
+        age--;
+    }
+
+    document.getElementById("ageResult").textContent=
+        "Your age is approximately "+age+" years.";
+}
+
+function dateCalc(){
+    var start=document.getElementById("dateStart").value;
+    var end=document.getElementById("dateEnd").value;
+
+    if(!start||!end){
+        document.getElementById("dateResult").textContent="Please select both dates.";
+        return;
+    }
+
+    var d1=new Date(start+"T00:00:00");
+    var d2=new Date(end+"T00:00:00");
+
+    var days=Math.round(Math.abs(d2-d1)/86400000);
+
+    document.getElementById("dateResult").textContent=
+        "Difference = "+days+" days.";
+}
+
+function speedCalc(){
+    var distance=num("speedDistance");
+    var time=num("speedTime");
+
+    if(isNaN(distance)||isNaN(time)||time<=0){
+        document.getElementById("speedResult").textContent="Please enter valid values.";
+        return;
+    }
+
+    document.getElementById("speedResult").textContent=
+        "Speed = "+(distance/time).toFixed(2)+" km/h";
+}
+
+function tempCalc(){
+    var value=num("tempValue");
+    var type=document.getElementById("tempType").value;
+
+    if(isNaN(value)){
+        document.getElementById("tempResult").textContent="Please enter a value.";
+        return;
+    }
+
+    var result;
+
+    if(type==="c2f"){
+        result=(value*9/5)+32;
+        document.getElementById("tempResult").textContent=
+            value+" °C = "+result.toFixed(2)+" °F";
+    }else{
+        result=(value-32)*5/9;
+        document.getElementById("tempResult").textContent=
+            value+" °F = "+result.toFixed(2)+" °C";
+    }
+}
+
+function lengthCalc(){
+    var value=num("lengthValue");
+    var from=document.getElementById("lengthFrom").value;
+    var to=document.getElementById("lengthTo").value;
+
+    if(isNaN(value)){
+        document.getElementById("lengthResult").textContent="Please enter a value.";
+        return;
+    }
+
+    var units={
+        m:1,
+        km:1000,
+        cm:0.01,
+        mi:1609.344,
+        ft:0.3048
+    };
+
+    var meters=value*units[from];
+    var result=meters/units[to];
+
+    document.getElementById("lengthResult").textContent=
+        value+" "+from+" = "+result.toFixed(4)+" "+to;
+}
+
+function weightCalc(){
+    var value=num("weightValue");
+    var from=document.getElementById("weightFrom").value;
+    var to=document.getElementById("weightTo").value;
+
+    if(isNaN(value)){
+        document.getElementById("weightResult").textContent="Please enter a value.";
+        return;
+    }
+
+    var units={
+        kg:1,
+        g:0.001,
+        lb:0.45359237
+    };
+
+    var kg=value*units[from];
+    var result=kg/units[to];
+
+    document.getElementById("weightResult").textContent=
+        value+" "+from+" = "+result.toFixed(4)+" "+to;
+}
+
+function bmiCalc(){
+    var weight=num("bmiWeight");
+    var height=num("bmiHeight");
+
+    if(isNaN(weight)||isNaN(height)||height<=0){
+        document.getElementById("bmiResult").textContent="Please enter valid values.";
+        return;
+    }
+
+    var meters=height/100;
+    var bmi=weight/(meters*meters);
+
+    document.getElementById("bmiResult").textContent=
+        "BMI = "+bmi.toFixed(2);
+}
+
+window.addEventListener("load",function(){
+    var hash=window.location.hash.replace("#","");
+
+    if(hash && document.getElementById(hash)){
+        showPanel(hash);
+    }
+});
+</script>
+
+</body>
+</html>
