@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="QuickCalc - Free online calculators for percentages, finance, dates, conversions and everyday calculations.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://quickcalcglobal.github.io/">
+<title>QuickCalc - Free Online Calculators</title>
+<style>
+:root{--bg:#f6f8fc;--card:#fff;--text:#172033;--muted:#667085;--brand:#2563eb;--brand2:#1d4ed8;--line:#e4e8ef;--dark:#111827;--shadow:0 10px 30px rgba(16,24,40,.08)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.55}.rtl{direction:rtl}.container{width:min(1120px,94%);margin:auto}
+header{background:var(--dark);color:#fff;padding:14px 0;position:sticky;top:0;z-index:10}.nav{display:flex;align-items:center;justify-content:space-between;gap:18px}.logo{color:#fff;text-decoration:none;font-size:25px;font-weight:800}.navright{display:flex;align-items:center;gap:18px}.links{display:flex;gap:18px}.links a,footer a{color:#fff;text-decoration:none}.lang{width:auto;padding:8px 10px;border:1px solid #657084;border-radius:8px;background:#fff;color:#172033}
+.hero{text-align:center;padding:58px 10px 35px}.badge{display:inline-block;background:#e8f1ff;color:var(--brand);padding:7px 13px;border-radius:999px;font-size:14px;font-weight:700}.hero h1{font-size:clamp(36px,6vw,58px);line-height:1.05;margin:16px 0 10px;letter-spacing:-1px}.hero p{max-width:720px;margin:auto;color:var(--muted);font-size:18px}.search{max-width:650px;margin:25px auto 0}.search input{width:100%;padding:14px 16px;border:1px solid var(--line);border-radius:12px;font-size:16px;outline:0;background:#fff}.search input:focus{border-color:var(--brand)}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:15px}.section-title h2{margin:0;font-size:27px}.count{color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin:20px 0 30px}.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;text-decoration:none;color:var(--text);transition:.18s;box-shadow:0 3px 12px rgba(16,24,40,.03)}.card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#cdd8f5}.icon{font-size:28px}.card h3{margin:9px 0 5px;font-size:17px}.card p{margin:0;color:var(--muted);font-size:14px}
+.panel{display:none;background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;margin:20px 0 35px;box-shadow:0 5px 20px rgba(16,24,40,.04)}.panel.active{display:block}.panel h2{margin-top:0}.field{margin:13px 0}label{display:block;font-weight:700;margin-bottom:6px}input,select{width:100%;padding:12px;border:1px solid #cbd2dc;border-radius:9px;font-size:16px;background:#fff}button{border:0;background:var(--brand);color:#fff;padding:12px 20px;border-radius:9px;font-size:16px;cursor:pointer}button:hover{background:var(--brand2)}.result{margin-top:15px;padding:14px;border-radius:9px;background:#eef6ff;font-weight:700;min-height:20px}.info{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;margin:20px 0 45px;color:var(--muted)}.info h2{color:var(--text);margin-top:0}
+footer{background:var(--dark);color:#fff;padding:28px 0;text-align:center}footer a{margin:0 8px}
+.hidden{display:none!important}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.nav{flex-direction:column}.navright{flex-wrap:wrap;justify-content:center}.links{gap:12px}.hero{padding-top:42px}.grid{grid-template-columns:1fr}.card{padding:18px}}
+</style>
+</head>
+<body>
+<header><div class="container nav">
+<a class="logo" href="./">QuickCalc</a>
+<div class="navright"><nav class="links"><a href="#calculators" data-k="calculators">Calculators</a><a href="about.html" data-k="about">About</a></nav>
+<select id="lang" class="lang" aria-label="Language"><option value="en">English</option><option value="fr">Français</option><option value="ar">العربية</option></select></div>
+</div></header>
+
+<main class="container">
+<section class="hero">
+<span class="badge" data-k="badge">100% Free · No Registration</span>
+<h1 data-k="heroTitle">Calculate it. Quickly.</h1>
+<p data-k="heroText">Fast and simple calculators for money, mathematics, dates, conversions and everyday decisions.</p>
+<div class="search"><input id="search" type="search" data-ph="search" placeholder="Search calculators..." aria-label="Search calculators"></div>
+</section>
+
+<section id="calculators">
+<div class="section-title"><h2 data-k="popular">Popular calculators</h2><span id="count" class="count"></span></div>
+<div id="grid" class="grid"></div>
+</section>
+
+<div id="panels"></div>
+<div id="empty" class="info hidden"><h2 data-k="noResults">No calculator found</h2><p data-k="tryAgain">Try another search term.</p></div>
+<section class="info"><h2 data-k="whyTitle">Why use QuickCalc?</h2><p data-k="whyText">QuickCalc makes everyday calculations simple, fast and accessible on phones and computers. More useful calculators can be added over time.</p></section>
+</main>
+
+<footer><div class="container"><div>QuickCalc · <span data-k="footer">Free Online Calculators</span></div><br><a href="about.html" data-k="about">About</a><a href="privacy.html" data-k="privacy">Privacy</a><a href="disclaimer.html" data-k="disclaimer">Disclaimer</a></div></footer>
+
+<script>
+const T={
+en:{
+calculators:"Calculators",about:"About",privacy:"Privacy",disclaimer:"Disclaimer",badge:"100% Free · No Registration",heroTitle:"Calculate it. Quickly.",heroText:"Fast and simple calculators for money, mathematics, dates, conversions and everyday decisions.",search:"Search calculators...",popular:"Popular calculators",noResults:"No calculator found",tryAgain:"Try another search term.",whyTitle:"Why use QuickCalc?",whyText:"QuickCalc makes everyday calculations simple, fast and accessible on phones and computers. More useful calculators can be added over time.",footer:"Free Online Calculators",calc:"Calculate",convert:"Convert",value:"Value",number:"Number",percentage:"Percentage",average:"Average",simple:"Simple Interest",compound:"Compound Interest",loan:"Loan Payment",age:"Age Calculator",date:"Date Difference",speed:"Speed",temperature:"Temperature",length:"Length Converter",weight:"Weight Converter",bmi:"BMI Calculator",percentageD:"Calculate percentages quickly.",averageD:"Calculate the average of numbers.",simpleD:"Calculate simple interest.",compoundD:"Calculate compound growth.",loanD:"Estimate monthly loan payments.",ageD:"Calculate your age.",dateD:"Calculate days between dates.",speedD:"Calculate speed from distance and time.",temperatureD:"Convert Celsius and Fahrenheit.",lengthD:"Convert common length units.",weightD:"Convert kilograms and pounds.",bmiD:"Calculate body mass index.",percent:"Percentage (%)",principal:"Principal",rate:"Annual Rate (%)",years:"Years",time:"Time (years)",frequency:"Compounds per year",loanAmount:"Loan Amount",term:"Term (years)",birth:"Date of Birth",start:"Start Date",end:"End Date",distance:"Distance (km)",hours:"Time (hours)",from:"From",to:"To",height:"Height (cm)",weightKg:"Weight (kg)",numbers:"Numbers separated by commas",c2f:"Celsius → Fahrenheit",f2c:"Fahrenheit → Celsius",meters:"Meters",km:"Kilometers",cm:"Centimeters",miles:"Miles",feet:"Feet",kg:"Kilograms",lb:"Pounds",grams:"Grams",err:"Please enter valid values.",both:"Please fill all required fields.",avg:"Average",interest:"Interest",total:"Total",final:"Final Amount",monthly:"Monthly Payment",difference:"Difference",days:"days",yourAge:"Your age is approximately",yearsWord:"years",speedR:"Speed"
+},
+fr:{
+calculators:"Calculatrices",about:"À propos",privacy:"Confidentialité",disclaimer:"Avertissement",badge:"100 % gratuit · Sans inscription",heroTitle:"Calculez. Rapidement.",heroText:"Des calculatrices simples et rapides pour l'argent, les mathématiques, les dates, les conversions et la vie quotidienne.",search:"Rechercher une calculatrice...",popular:"Calculatrices populaires",noResults:"Aucune calculatrice trouvée",tryAgain:"Essayez un autre terme.",whyTitle:"Pourquoi utiliser QuickCalc ?",whyText:"QuickCalc rend les calculs quotidiens simples, rapides et accessibles sur téléphone et ordinateur.",footer:"Calculatrices en ligne gratuites",calc:"Calculer",convert:"Convertir",value:"Valeur",number:"Nombre",percentage:"Pourcentage",average:"Moyenne",simple:"Intérêt simple",compound:"Intérêts composés",loan:"Paiement de prêt",age:"Calculateur d'âge",date:"Différence de dates",speed:"Vitesse",temperature:"Température",length:"Convertisseur de longueur",weight:"Convertisseur de poids",bmi:"Calculateur d'IMC",percentageD:"Calculez rapidement les pourcentages.",averageD:"Calculez la moyenne des nombres.",simpleD:"Calculez les intérêts simples.",compoundD:"Calculez la croissance composée.",loanD:"Estimez les paiements mensuels.",ageD:"Calculez votre âge.",dateD:"Calculez les jours entre deux dates.",speedD:"Calculez la vitesse.",temperatureD:"Convertissez Celsius et Fahrenheit.",lengthD:"Convertissez les unités de longueur.",weightD:"Convertissez kilogrammes et livres.",bmiD:"Calculez l'indice de masse corporelle.",percent:"Pourcentage (%)",principal:"Capital",rate:"Taux annuel (%)",years:"Années",time:"Durée (années)",frequency:"Compositions par an",loanAmount:"Montant du prêt",term:"Durée (années)",birth:"Date de naissance",start:"Date de début",end:"Date de fin",distance:"Distance (km)",hours:"Temps (heures)",from:"De",to:"Vers",height:"Taille (cm)",weightKg:"Poids (kg)",numbers:"Nombres séparés par des virgules",c2f:"Celsius → Fahrenheit",f2c:"Fahrenheit → Celsius",meters:"Mètres",km:"Kilomètres",cm:"Centimètres",miles:"Miles",feet:"Pieds",kg:"Kilogrammes",lb:"Livres",grams:"Grammes",err:"Veuillez saisir des valeurs valides.",both:"Veuillez remplir les champs requis.",avg:"Moyenne",interest:"Intérêts",total:"Total",final:"Montant final",monthly:"Paiement mensuel",difference:"Différence",days:"jours",yourAge:"Votre âge est d'environ",yearsWord:"ans",speedR:"Vitesse"
+},
+ar:{
+calculators:"الحاسبات",about:"من نحن",privacy:"الخصوصية",disclaimer:"إخلاء المسؤولية",badge:"مجاني 100% · بدون تسجيل",heroTitle:"احسبها بسرعة.",heroText:"حاسبات سريعة وبسيطة للمال والرياضيات والتواريخ والتحويلات والاستخدامات اليومية.",search:"ابحث عن حاسبة...",popular:"الحاسبات الشائعة",noResults:"لم يتم العثور على حاسبة",tryAgain:"جرّب كلمة بحث أخرى.",whyTitle:"لماذا QuickCalc؟",whyText:"يجعل QuickCalc الحسابات اليومية بسيطة وسريعة ومتاحة على الهاتف والكمبيوتر.",footer:"حاسبات مجانية عبر الإنترنت",calc:"احسب",convert:"تحويل",value:"القيمة",number:"الرقم",percentage:"النسبة المئوية",average:"المتوسط",simple:"الفائدة البسيطة",compound:"الفائدة المركبة",loan:"دفعة القرض",age:"حاسبة العمر",date:"الفرق بين التاريخين",speed:"السرعة",temperature:"درجة الحرارة",length:"محول الطول",weight:"محول الوزن",bmi:"حاسبة مؤشر كتلة الجسم",percentageD:"احسب النسب المئوية بسرعة.",averageD:"احسب متوسط الأرقام.",simpleD:"احسب الفائدة البسيطة.",compoundD:"احسب النمو المركب.",loanD:"قدّر الدفعات الشهرية للقرض.",ageD:"احسب عمرك.",dateD:"احسب عدد الأيام بين تاريخين.",speedD:"احسب السرعة من المسافة والوقت.",temperatureD:"حوّل بين المئوية والفهرنهايت.",lengthD:"حوّل وحدات الطول.",weightD:"حوّل بين وحدات الوزن.",bmiD:"احسب مؤشر كتلة الجسم.",percent:"النسبة المئوية (%)",principal:"المبلغ الأساسي",rate:"المعدل السنوي (%)",years:"السنوات",time:"المدة (بالسنوات)",frequency:"مرات التركيب في السنة",loanAmount:"مبلغ القرض",term:"المدة (بالسنوات)",birth:"تاريخ الميلاد",start:"تاريخ البداية",end:"تاريخ النهاية",distance:"المسافة (كم)",hours:"الوقت (بالساعات)",from:"من",to:"إلى",height:"الطول (سم)",weightKg:"الوزن (كغ)",numbers:"الأرقام مفصولة بفواصل",c2f:"مئوية ← فهرنهايت",f2c:"فهرنهايت ← مئوية",meters:"متر",km:"كيلومتر",cm:"سنتيمتر",miles:"ميل",feet:"قدم",kg:"كيلوغرام",lb:"رطل",grams:"غرام",err:"يرجى إدخال قيم صحيحة.",both:"يرجى ملء الحقول المطلوبة.",avg:"المتوسط",interest:"الفائدة",total:"الإجمالي",final:"المبلغ النهائي",monthly:"الدفعة الشهرية",difference:"الفرق",days:"يوم",yourAge:"عمرك حوالي",yearsWord:"سنة",speedR:"السرعة"
+}};
+
+const data=[
+["percentage","%","percentageD"],["average","📊","averageD"],["simple","💰","simpleD"],["compound","📈","compoundD"],["loan","🏠","loanD"],["age","🎂","ageD"],["date","📅","dateD"],["speed","⚡","speedD"],["temperature","🌡️","temperatureD"],["length","📏","lengthD"],["weight","⚖️","weightD"],["bmi","⚕️","bmiD"]
+];
+let lang=localStorage.getItem("quickcalcLanguage")||"en";
+const $=id=>document.getElementById(id), t=k=>T[lang][k]||T.en[k]||k;
+
+function cardHTML(id,icon,desc){return `<a class="card" href="#${id}" onclick="showPanel('${id}');return false"><div class="icon">${icon}</div><h3 data-title="${id}">${t(id)}</h3><p>${t(desc)}</p></a>`}
+
+function field(label,id,type="number",extra=""){return `<div class="field"><label>${label}</label><input id="${id}" type="${type}" ${extra}></div>`}
+function panel(id,body){return `<section class="panel" id="${id}"><h2>${t(id)}</h2>${body}</section>`}
+
+function render(){
+$("grid").innerHTML=data.map(x=>cardHTML(x[0],x[1],x[2])).join("");
+const L={
+percentage:field(t("percent"),"percentValue")+field(t("number"),"percentNumber")+`<button onclick="calc('percentage')">${t("calc")}</button><div class="result" id="percentageResult"></div>`,
+average:field(t("numbers"),"averageNumbers","text")+`<button onclick="calc('average')">${t("calc")}</button><div class="result" id="averageResult"></div>`,
+simple:field(t("principal"),"simplePrincipal")+field(t("rate"),"simpleRate")+field(t("time"),"simpleTime")+`<button onclick="calc('simple')">${t("calc")}</button><div class="result" id="simpleResult"></div>`,
+compound:field(t("principal"),"compoundPrincipal")+field(t("rate"),"compoundRate")+field(t("years"),"compoundYears")+field(t("frequency"),"compoundFrequency","number",'value="12"')+`<button onclick="calc('compound')">${t("calc")}</button><div class="result" id="compoundResult"></div>`,
+loan:field(t("loanAmount"),"loanAmount")+field(t("rate"),"loanRate")+field(t("term"),"loanYears")+`<button onclick="calc('loan')">${t("calc")}</button><div class="result" id="loanResult"></div>`,
+age:field(t("birth"),"birthDate","date")+`<button onclick="calc('age')">${t("calc")}</button><div class="result" id="ageResult"></div>`,
+date:field(t("start"),"dateStart","date")+field(t("end"),"dateEnd","date")+`<button onclick="calc('date')">${t("calc")}</button><div class="result" id="dateResult"></div>`,
+speed:field(t("distance"),"speedDistance")+field(t("hours"),"speedTime")+`<button onclick="calc('speed')">${t("calc")}</button><div class="result" id="speedResult"></div>`,
+temperature:field(t("value"),"tempValue")+`<div class="field"><label>${t("convert")}</label><select id="tempType"><option value="c2f">${t("c2f")}</option><option value="f2c">${t("f2c")}</option></select></div><button onclick="calc('temperature')">${t("convert")}</button><div class="result" id="temperatureResult"></div>`,
+length:field(t("value"),"lengthValue")+selectField(t("from"),"lengthFrom",[["m","meters"],["km","km"],["cm","cm"],["mi","miles"],["ft","feet"]])+selectField(t("to"),"lengthTo",[["m","meters"],["km","km"],["cm","cm"],["mi","miles"],["ft","feet"]])+`<button onclick="calc('length')">${t("convert")}</button><div class="result" id="lengthResult"></div>`,
+weight:field(t("value"),"weightValue")+selectField(t("from"),"weightFrom",[["kg","kg"],["lb","lb"],["g","grams"]])+selectField(t("to"),"weightTo",[["kg","kg"],["lb","lb"],["g","grams"]])+`<button onclick="calc('weight')">${t("convert")}</button><div class="result" id="weightResult"></div>`,
+bmi:field(t("weightKg"),"bmiWeight")+field(t("height"),"bmiHeight")+`<button onclick="calc('bmi')">${t("calc")}</button><div class="result" id="bmiResult"></div>`
+};
+$("panels").innerHTML=Object.keys(L).map(k=>panel(k,L[k])).join("");
+$("count").textContent=data.length+" "+t("calculators").toLowerCase();
+$("search").placeholder=t("search");
+document.querySelectorAll("[data-k]").forEach(e=>e.textContent=t(e.dataset.k));
+document.documentElement.lang=lang;document.body.classList.toggle("rtl",lang==="ar");$("lang").value=lang;
+document.title=lang==="ar"?"QuickCalc - حاسبات مجانية":lang==="fr"?"QuickCalc - Calculatrices gratuites":"QuickCalc - Free Online Calculators";
+filter();
+}
+
+function selectField(label,id,opts){return `<div class="field"><label>${label}</label><select id="${id}">${opts.map(o=>`<option value="${o[0]}">${t(o[1])}</option>`).join("")}</select></div>`}
+function n(id){return parseFloat($(id).value)}
+function out(id,text){$(id+"Result").textContent=text}
+function calc(type){
+try{
+if(type==="percentage"){let p=n("percentValue"),x=n("percentNumber");if(isNaN(p)||isNaN(x))return out("percentage",t("both"));out("percentage",`${p}% ${t("of")||"of"} ${x} = ${(p*x/100).toFixed(2)}`)}
+else if(type==="average"){let a=$("averageNumbers").value.split(",").map(x=>parseFloat(x.trim())).filter(x=>!isNaN(x));if(!a.length)return out("average",t("err"));out("average",`${t("avg")} = ${(a.reduce((a,b)=>a+b,0)/a.length).toFixed(2)}`)}
+else if(type==="simple"){let p=n("simplePrincipal"),r=n("simpleRate"),y=n("simpleTime");if([p,r,y].some(isNaN))return out("simple",t("both"));let i=p*r/100*y;out("simple",`${t("interest")} = ${i.toFixed(2)} | ${t("total")} = ${(p+i).toFixed(2)}`)}
+else if(type==="compound"){let p=n("compoundPrincipal"),r=n("compoundRate"),y=n("compoundYears"),q=n("compoundFrequency");if([p,r,y,q].some(isNaN)||q<=0)return out("compound",t("err"));let total=p*Math.pow(1+r/100/q,q*y);out("compound",`${t("interest")} = ${(total-p).toFixed(2)} | ${t("final")} = ${total.toFixed(2)}`)}
+else if(type==="loan"){let p=n("loanAmount"),r=n("loanRate"),y=n("loanYears");if([p,r,y].some(isNaN)||y<=0)return out("loan",t("err"));let m=y*12,rate=r/100/12,pay=rate===0?p/m:p*rate*Math.pow(1+rate,m)/(Math.pow(1+rate,m)-1);out("loan",`${t("monthly")} = ${pay.toFixed(2)}`)}
+else if(type==="age"){let v=$("birthDate").value;if(!v)return out("age",t("both"));let b=new Date(v+"T00:00:00"),d=new Date(),a=d.getFullYear()-b.getFullYear();let bd=new Date(d.getFullYear(),b.getMonth(),b.getDate());if(d<bd)a--;out("age",`${t("yourAge")} ${a} ${t("yearsWord")}.`)}
+else if(type==="date"){let a=$("dateStart").value,b=$("dateEnd").value;if(!a||!b)return out("date",t("both"));let days=Math.round(Math.abs(new Date(b+"T00:00:00")-new Date(a+"T00:00:00"))/86400000);out("date",`${t("difference")} = ${days} ${t("days")}.`)}
+else if(type==="speed"){let d=n("speedDistance"),h=n("speedTime");if(isNaN(d)||isNaN(h)||h<=0)return out("speed",t("err"));out("speed",`${t("speedR")} = ${(d/h).toFixed(2)} km/h`)}
+else if(type==="temperature"){let v=n("tempValue");if(isNaN(v))return out("temperature",t("err"));let c=$("tempType").value;if(c==="c2f")out("temperature",`${v} °C = ${(v*9/5+32).toFixed(2)} °F`);else out("temperature",`${v} °F = ${((v-32)*5/9).toFixed(2)} °C`)}
+else if(type==="length"){let v=n("lengthValue"),a=$("lengthFrom").value,b=$("lengthTo").value;if(isNaN(v))return out("length",t("err"));let u={m:1,km:1000,cm:.01,mi:1609.344,ft:.3048};out("length",`${v} ${a} = ${(v*u[a]/u[b]).toFixed(4)} ${b}`)}
+else if(type==="weight"){let v=n("weightValue"),a=$("weightFrom").value,b=$("weightTo").value;if(isNaN(v))return out("weight",t("err"));let u={kg:1,g:.001,lb:.45359237};out("weight",`${v} ${a} = ${(v*u[a]/u[b]).toFixed(4)} ${b}`)}
+else if(type==="bmi"){let w=n("bmiWeight"),h=n("bmiHeight");if(isNaN(w)||isNaN(h)||h<=0)return out("bmi",t("err"));out("bmi",`BMI = ${(w/Math.pow(h/100,2)).toFixed(2)}`)}
+}catch(e){console.error(e)}
+}
+function showPanel(id){document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));let p=$(id);if(p){p.classList.add("active");setTimeout(()=>p.scrollIntoView({behavior:"smooth",block:"start"}),30)}}
+function filter(){let q=$("search").value.toLowerCase().trim(),visible=0;document.querySelectorAll(".card").forEach(c=>{let ok=!q||c.textContent.toLowerCase().includes(q);c.classList.toggle("hidden",!ok);if(ok)visible++});$("count").textContent=visible+" "+t("calculators").toLowerCase();$("empty").classList.toggle("hidden",visible!==0)}
+$("search").addEventListener("input",filter);
+$("lang").addEventListener("change",e=>{lang=e.target.value;localStorage.setItem("quickcalcLanguage",lang);render()});
+render();
+let hash=location.hash.replace("#","");if(hash&&$(hash))showPanel(hash);
+</script>
+</body>
+</html>
